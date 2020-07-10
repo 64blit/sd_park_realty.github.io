@@ -14,27 +14,93 @@ var camera, scene, renderer, controls;
 // DOM vars
 var hideSelector = 'hide-completely';
 var homePageEl, aboutPageEl, listingsPageEl, infoPageEl, contactPageEl, closeContactPageEl;
+var homeNavButton, homeImageNavButton, aboutNavButton, listingsNavButton, infoNavButton, contactNavButton, closeContactNavButton;
+var loadingText;
 // \DOM vars
 
 init();
 
 function init() {
-  setupThreeJS();
-  findDomElements();
-  addCallbacks();
-  render();
+  showSplash();
+  setupScene();
+  setCallbacks();
+
+}
+var pointAnimation, wavesAnimation;
+function showSplash(){
+  pointAnimation = anime({
+    targets: ".point-animated",
+    translateX: 15,
+    duration: 800,
+    loop: true,
+    direction: 'alternate',
+    easing: "easeOutCubic"
+  });
+
+}
+
+function hideSplash(){
+
+  setTimeout(() => {
+    cancelAnimation(pointAnimation);
+    hideElement($('.splash'));
+    onNavButtonHome();
+  }, 500);
+
 }
 
 function findDomElements(){
+
   homePageEl = $('#home-page');
   aboutPageEl = $('#about-us-page');
   listingsPageEl = $('#listings-page');
   infoPageEl = $('#info-page');
   contactPageEl = $('#contact-page');
+
+
+  homeNavButton = $('#nav-button-home');
+  homeImageNavButton = $('#nav-button-home-image');
+  aboutNavButton = $('#nav-button-about');
+  listingsNavButton = $('#nav-button-listings');
+  infoNavButton = $('#nav-button-info');
+  contactNavButton = $('#contact-us-button');
   closeContactPageEl = $('#close-contact-button');
+
+  loadingText = $('.splash-loading-text');
+
 }
 
-function setupThreeJS(){
+function setCallbacks(){
+  findDomElements();
+
+  window.addEventListener( 'resize', onWindowResize, false );
+  window.addEventListener('mousemove', mouseMove);
+  window.addEventListener("touchmove", mouseMove, false);
+
+  homeNavButton.on( 'mousedown', onNavButtonHome );
+  homeImageNavButton.on( 'mousedown', onNavButtonHome );
+  aboutNavButton.on( 'mousedown', onNavButtonAbout );
+  listingsNavButton.on( 'mousedown', onNavButtonListings );
+  infoNavButton.on( 'mousedown', onNavButtonInfo );
+  contactNavButton.on( 'mousedown', onNavButtonContact );
+  closeContactPageEl.on( 'mousedown', onCloseContactPage );
+}
+
+function setBackground(){
+
+    wavesAnimation = anime({
+      targets: '#bg svg .waves',
+      easing: 'easeInOutQuad',
+      delay: anime.stagger(1000),
+      translateX: () => { return anime.random(-70,0) + '%'; },
+      duration: 40000,
+      loop: true,
+      direction: 'alternate'
+    });
+}
+
+function setupScene(){
+  setBackground();
   setupRenderer();
   addModel();
   // lookAtModelHack();
@@ -57,7 +123,7 @@ function setupRenderer(){
   // scene.environment = texture;
 
   // texture.dispose();
-  // render();
+  // renderThreeJS();
 
   renderer = new THREE.WebGLRenderer( {
     canvas: bgCanvas,
@@ -77,38 +143,59 @@ function addModel(){
   var roughnessMipmapper = new RoughnessMipmapper( renderer );
 
   var loader = new GLTFLoader().setPath( 'models/' );
-  loader.load( 'SD_1_hq.glb', function ( gltf ) {
+  loader.load(
+    // MODEL
+    'SD_1_hq.glb'
 
-    gltf.scene.traverse( function ( child ) {
+    // LOADED CALLBACK
+    , function ( gltf ) {
 
-      if ( child.isMesh ) {
+      gltf.scene.traverse( function ( child ) {
 
-        roughnessMipmapper.generateMipmaps( child.material );
+        if ( child.isMesh ) {
 
-        // lookAt( child );
-        child.frustumCulled = false;
+          roughnessMipmapper.generateMipmaps( child.material );
 
-        var texture = child.material.map;
-        child.material = getCurvedMat( texture );
+          // lookAt( child );
+          child.frustumCulled = false;
 
-        // var position = new THREE.Vector3();
-        // position.setFromMatrixPosition( child.matrixWorld );
-        // print( "mesh pos: " + position.x + ", " + position.y + ", " + position.z  );
-      }
+          var texture = child.material.map;
+          child.material = getCurvedMat( texture );
 
-    } );
+          // var position = new THREE.Vector3();
+          // position.setFromMatrixPosition( child.matrixWorld );
+          // print( "mesh pos: " + position.x + ", " + position.y + ", " + position.z  );
+        }
 
-    scene.add( gltf.scene );
-    // scene.overrideMaterial = getCurvedMat();
+      });
 
-    roughnessMipmapper.dispose();
+      scene.add( gltf.scene );
+      // scene.overrideMaterial = getCurvedMat();
 
-    render();
+      roughnessMipmapper.dispose();
 
-    showHomePageAnimation();
-  } );
+      renderThreeJS();
+
+      showHomePageAnimation();
+    },
+
+    // PROGRESS CALLBACK
+    function ( xhr ) {
+      loadingText.text(Math.round( xhr.loaded / xhr.total * 100 ) + '%')
+      // console.log(  );
+      hideSplash();
+    },
+
+    // ERROR CALLBACK
+    function ( error ) {
+      hideSplash();
+      console.log( 'An error occured while loading the 3d.' );
+
+    }
+  );
 
 }
+
 function lookAtModelHack(){
 
   controls = new OrbitControls( camera, renderer.domElement );
@@ -118,19 +205,6 @@ function lookAtModelHack(){
   controls.target.set( -2, -2, -4.3 );
 
   controls.update();
-}
-
-function addCallbacks(){
-  window.addEventListener( 'resize', onWindowResize, false );
-  window.addEventListener('mousemove', mouseMove);
-  window.addEventListener("touchmove", mouseMove, false);
-
-  $('#nav-button-home').on( 'mousedown', onNavButtonHome );
-  $('#nav-button-about').on( 'mousedown', onNavButtonAbout );
-  $('#nav-button-listings').on( 'mousedown', onNavButtonListings );
-  $('#nav-button-info').on( 'mousedown', onNavButtonInfo );
-  $('#contact-us-button').on( 'mousedown', onNavButtonContact );
-  closeContactPageEl.on( 'mousedown', onCloseContactPage );
 }
 
 var mouse = {
@@ -157,7 +231,7 @@ function mouseMove(e) {
 
   mouse.x = e.clientX;
   mouse.y = e.clientY;
-  render();
+  renderThreeJS();
   cameraMoves.moving = false;
 
 }
@@ -168,14 +242,9 @@ const map = (num, in_min, in_max, out_min, out_max) => {
 
 // home  functionality
 var testFireButton = 0;
-function onNavButtonHome(  ){
-  print(" clicked home " + (testFireButton++));
-  toggleVisibilityFor( homePageEl );
-  showHomePageAnimation();
-}
+
 
 function showHomePageAnimation(){
-  print("1");
   // Wrap every letter in a span
   var textWrapper = document.querySelector('.ml14 .letters');
   textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -195,108 +264,24 @@ function showHomePageAnimation(){
 
 // sdpr logo animation
 
-const homeText2Animation1 = ({
-  targets: '.ml7 .letter',
-  begin: () => {showElement( $("#header-textbox-2") )},
-  translateY: ["1.2em", 0],
-  // translateX: ["0.55em", 0],
-  translateZ: 0,
-  // rotateZ: [180, 0],
-  duration: 350,
-  easing: "easeOutExpo",
-  delay: (el, i) => 10 * i
-}) ;
+function onNavButtonHome(  ){
+  print(" clicked home " + (testFireButton++));
+  toggleVisibilityFor( homePageEl );
+  showHomePageAnimation();
 
-
-const homeText1Animation1 = ({
-  targets: '.ml14 .line',
-  begin: () => {showElement( $("#header-textbox-1") )},
-  scaleX: [0,1],
-  opacity: [0.5,1],
-  easing: "easeInOutExpo",
-  duration: 900
-});
-
-const homeText1Animation2 = ({
-  targets: '.ml14 .letter',
-  opacity: [0,1],
-  translateX: [40,0],
-  translateZ: 0,
-  scaleX: [0.3, 1],
-  easing: "easeOutExpo",
-  duration: 800,
-  offset: '-=600',
-  delay: (el, i) => 150 + 25 * i
-});
-
-const homeText1Animation3 = ({
-  targets: '.ml14',
-  end:  () => hideElement( $("#header-textbox-1") ),
-  opacity: 0,
-  duration: 500,
-  easing: "easeOutExpo",
-});
-// end sdpr logo animation
-
-// const logoAnimation1 = ({
-//   targets: [
-//     '#header-graphic-1 .lines-bg .sdpr-circle-bg',
-//     '#header-graphic-1 .lines .sdpr-path'
-//   ],
-//   delay: anime.stagger(500),
-//   begin:  () => {showElement( $("#header-graphic-1") )},
-//   opacity: [0, 1],
-//   fillOpacity: [0, 1],
-//   easing: 'easeInOutExpo',
-//   direction: 'alternate',
-//   strokeDashoffset: [anime.setDashoffset, 0],
-// });
-
-
-const logoAnimation1 = ({
-  duration: 250,
-  begin:  () => {showElement( $("#header-graphic-1") )},
-  opacity: [0, 1],
-  fillOpacity: [0, 1],
-  easing: 'linear',
-  targets: '#header-graphic-1 .lines-bg .sdpr-circle-bg',
-});
-
-const logoAnimation2 = ({
-  targets: '#header-graphic-1 .lines .sdpr-path',
-  strokeDashoffset: [anime.setDashoffset, 0],
-  easing: 'easeInOutSine',
-  duration: 500,
-  delay: anime.stagger(100),
-  direction: 'alternate',
-  loop: false
-});
-
-const logoAnimation3 = ({
-  targets: '#header-graphic-1 .lines .svg-sdpr-green',
-  easing: 'linear',
-  fill: ['rgba(0,0,0,0)', '#71bf45']
-});
-
-const logoAnimation4 = ({
-  targets: '#header-graphic-1 .lines .svg-sdpr-herotext',
-  easing: 'linear',
-  fill: ['rgba(0,0,0,0)', '#393939']
-});
-
-const logoAnimation5 = ({
-  targets: '#header-graphic-1',
-  opacity: 0,
-  end: () => { hideElement( $('#header-graphic-1') ) }
-});
-
-
+  $(  '.nav-item > a.active ').removeClass('active');
+  $( homeNavButton ).addClass('active');
+}
 // \home
 
 // about functionality
 function onNavButtonAbout(  ){
   print(" clicked about " + (testFireButton++));
   toggleVisibilityFor(aboutPageEl);
+
+  $(  '.nav-item > a.active ').removeClass('active');
+  $( aboutNavButton ).addClass('active');
+
 }
 // \about
 
@@ -304,6 +289,10 @@ function onNavButtonAbout(  ){
 function onNavButtonListings(  ){
   print(" clicked listings " + (testFireButton++));
   toggleVisibilityFor(listingsPageEl);
+
+  $( '.nav-item > a.active ' ).removeClass('active');
+  $( listingsNavButton ).addClass('active');
+
 }
 // \listings
 
@@ -311,6 +300,10 @@ function onNavButtonListings(  ){
 function onNavButtonInfo(  ){
   print(" clicked info " + (testFireButton++));
   toggleVisibilityFor(infoPageEl);
+
+  $(  '.nav-item > a.active ').removeClass('active');
+  $( infoNavButton ).addClass('active');
+
 }
 // \info
 
@@ -416,7 +409,7 @@ function onWindowResize() {
 
   renderer.setSize( window.innerWidth, window.innerHeight );
 
-  render();
+  renderThreeJS();
 
 }
 //
@@ -427,7 +420,7 @@ function lookAt( mesh ){
   camera.lookAt( position );
 }
 
-function render() {
+function renderThreeJS() {
   renderer.render( scene, camera );
 }
 
@@ -446,4 +439,93 @@ function setBackgroundTexture( texture ){
 
 function lerp(v0, v1, t) {
   return v0*(1-t)+v1*t
+}
+
+
+
+const homeText2Animation1 = ({
+  targets: '.ml7 .letter',
+  begin: () => {showElement( $("#header-textbox-2") )},
+  translateY: ["1.2em", 0],
+  // translateX: ["0.55em", 0],
+  translateZ: 0,
+  // rotateZ: [180, 0],
+  duration: 350,
+  easing: "easeOutExpo",
+  delay: (el, i) => 10 * i
+}) ;
+
+
+const homeText1Animation1 = ({
+  targets: '.ml14 .line',
+  begin: () => {showElement( $("#header-textbox-1") )},
+  scaleX: [0,1],
+  opacity: [0.5,1],
+  easing: "easeInOutExpo",
+  duration: 900
+});
+
+const homeText1Animation2 = ({
+  targets: '.ml14 .letter',
+  opacity: [0,1],
+  translateX: [40,0],
+  translateZ: 0,
+  scaleX: [0.3, 1],
+  easing: "easeOutExpo",
+  duration: 800,
+  offset: '-=600',
+  delay: (el, i) => 150 + 25 * i
+});
+
+const homeText1Animation3 = ({
+  targets: '.ml14',
+  end:  () => hideElement( $("#header-textbox-1") ),
+  opacity: 0,
+  duration: 500,
+  easing: "easeOutExpo",
+});
+// end sdpr logo animation
+
+
+const logoAnimation1 = ({
+  duration: 200,
+  begin:  () => {showElement( $("#header-graphic-1") )},
+  opacity: [0, 1],
+  fillOpacity: [0, 1],
+  easing: 'linear',
+  targets: '#header-graphic-1 .lines-bg .sdpr-circle-bg',
+});
+
+const logoAnimation2 = ({
+  targets: '#header-graphic-1 .lines .sdpr-path',
+  strokeDashoffset: [anime.setDashoffset, 0],
+  easing: 'easeInOutSine',
+  duration: 2000,
+  delay: anime.stagger(100),
+  direction: 'alternate',
+  loop: false
+});
+
+const logoAnimation3 = ({
+  targets: '#header-graphic-1 .lines .svg-sdpr-green',
+  easing: 'linear',
+  fill: ['rgba(0,0,0,0)', '#71bf45']
+});
+
+const logoAnimation4 = ({
+  targets: '#header-graphic-1 .lines .svg-sdpr-herotext',
+  easing: 'linear',
+  fill: ['rgba(0,0,0,0)', '#393939']
+});
+
+const logoAnimation5 = ({
+  targets: '#header-graphic-1',
+  opacity: 0,
+  end: () => { hideElement( $('#header-graphic-1') ) }
+});
+
+function cancelAnimation (animation) {
+  let activeInstances = anime.running;
+  let index = activeInstances.indexOf(animation);
+  activeInstances.splice(index, 1);
 }

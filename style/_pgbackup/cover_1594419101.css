@@ -1,0 +1,725 @@
+/* * Globals */
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+@font-face {
+  font-family: "ParkRealtyFont";
+  src: url("prfont.woff2");
+}
+
+@font-face {
+  font-family: "ParkRealtyFont2";
+  src: url("prfont2.woff2");
+}
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none;
+
+  /* Prevent inheritance from `body` */
+  background-color: #fff;
+  border: .05rem solid #fff;
+}
+
+/* * Base structure */
+html,
+body {
+  height: 100%;
+  background-color: #333;
+  font-family: 'ParkRealtyFont2';
+}
+
+body {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
+  background: url(../images/skyhd1.jpg) no-repeat center center;
+  background-size: cover;
+
+  /* font-family: 'ParkRealtyFont', Fallback, sans-serif; */
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.site-wrapper-inner {
+  display: table-cell;
+
+  /* vertical-align: top */
+}
+
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.abs-center {
+  text-align: center !important;
+  margin: auto;
+  left: 50%;
+  top: 50%;
+}
+
+.w90_h80 {
+  width: 90vw;
+  height: 80vh;
+  margin-left: -45vw;
+  margin-top: -40vh;
+}
+
+.w80_h80 {
+  width: 80vw;
+  height: 80vh;
+  margin-left: -40vw;
+  margin-top: -40vh;
+  min-width: 20rem;
+
+  /* background-color: rgba(0,0,0,.05) */
+}
+
+.w80_h70 {
+  width: 80vw;
+  height: 70vh;
+  margin-left: -40vw;
+  margin-top: -35vh;
+}
+
+.w80_w50 {
+  width: 80vw;
+  height: 50vh;
+  margin-left: -40vw;
+  margin-top: -25vh;
+}
+
+/* * NavBar */
+.navbar {
+  min-height: 5rem;
+}
+
+.nav-link {
+  padding: .25rem 0;
+  float: right;
+  font-weight: bold;
+  color: rgba(255,255,255,1);
+  border-bottom: .25rem solid transparent;
+}
+
+/* .nav-link:hover,
+.nav-link:focus {
+border-bottom-color: rgba(255,255,255,.25);
+} */
+.nav-link + .nav-link {
+  margin-left: 1rem;
+}
+
+ul li a.active {
+  color: #fff;
+  border-bottom-color: rgba(113,191,69, 1);
+}
+
+ul li a:hover {
+  color: #fff;
+  border-bottom-color: rgba(113,191,69, .5);
+  transition: transform 0.6s linear;
+  transform: scale(0.97, 0.93);
+}
+
+ul li a:hover::after {
+  transition: transform 0.6s linear;
+  transform: scale(1,1);
+}
+
+/* @media (min-width: 48em) {
+.masthead-brand {
+float: left;
+}
+} */
+/* * Cover */
+.cover {
+}
+
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: bold;
+}
+
+/* * Footer */
+.mastfoot {
+  color: rgba(255,255,255,.5);
+}
+
+/* * Affix and center */
+/* @media (min-width: 40em) {
+/* Pull out the header and footer */
+.masthead {
+  position: fixed;
+  top: 0;
+}
+
+.mastfoot {
+  position: fixed;
+  bottom: 0;
+}
+
+/* Start the vertical centering */
+.site-wrapper-inner {
+  vertical-align: middle;
+}
+
+/* Handle the widths */
+.masthead,
+.mastfoot,
+.cover-container {
+  width: 100%;
+
+  /* Must be percentage or pixels for horizontal alignment */
+}
+
+/* @media (min-width: 62em) {
+.masthead,
+.mastfoot,
+.cover-container {
+width: 52rem;
+}
+} */
+.static-bg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: url(../images/skyhd1.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+#center-landing {
+}
+
+.nav-bar-override {
+  float: right !important;
+}
+
+.sub-header-font {
+  font-size: 1.5rem;
+}
+
+.header-font {
+  font-size: 3rem;
+}
+
+.image-default {
+  object-fit: contain;
+  height: 100%;
+}
+
+.transparent-white {
+  background-color: rgba(255,255,255,.35);
+}
+
+.rounded-border {
+  border-radius: 2rem;
+}
+
+.hide-completely {
+  display: none;
+  visibility: hidden;
+  height: 0px !important;
+}
+
+.float-bottom-right-corner {
+  text-align: center !important;
+  margin: auto;
+  bottom: 0;
+  right: 0;
+}
+
+.medium-icon {
+  max-width: ;
+}
+
+.medium-icon {
+  min-height: 4rem;
+  max-height: 3rem;
+
+  /* min-width: 4rem */
+  /* max-width: 4rem */
+}
+
+.large-icon {
+  min-width: 10rem;
+  min-height: 10rem;
+  max-height: 12rem;
+  max-width: 12rem;
+}
+
+.medium-icon-portraits {
+  /* height: 150% */
+  /* right: 10% */
+  /* bottom: 10% */
+  /* margin: 16px */
+  width: 40%;
+  margin-top: .5rem;
+  margin-left: .5rem;
+}
+
+.sign-bg {
+  background-image: url(../images/temp_sold_sign.png);
+  background-size: cover;
+  margin-bottom: -5rem;
+  padding-top: 1rem;
+}
+
+.team-member-item {
+  min-width: 4rem;
+  max-width: 30rem;
+  min-height: 4rem;
+  max-height: 25%;
+}
+
+.testimonial-item {
+  min-width: 10rem;
+  max-width: 20rem;
+  height: 90%;
+  overflow-y: hidden !important;
+  overflow: auto;
+}
+
+.minus-padding-lg {
+  padding-bottom: -1px;
+}
+
+/* TEST ABOUT US */
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #108d6f;
+  border-color: #108d6f;
+  box-shadow: none;
+  outline: none;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #007b5e;
+  border-color: #007b5e;
+}
+
+section {
+  padding: 60px 0;
+}
+
+section .section-title {
+  text-align: center;
+  color: #007b5e;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+}
+
+#team .card {
+  border: none;
+  background: #ffffff;
+}
+
+.image-flip:hover .backside,
+.image-flip.hover .backside {
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  border-radius: .25rem;
+}
+
+.image-flip:hover .frontside,
+.image-flip.hover .frontside {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.mainflip {
+  -webkit-transition: 1s;
+  -webkit-transform-style: preserve-3d;
+  -ms-transition: 1s;
+  -moz-transition: 1s;
+  -moz-transform: perspective(1000px);
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transition: 1s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.frontside {
+  position: relative;
+  -webkit-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  z-index: 2;
+  margin-bottom: 30px;
+}
+
+.backside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+  -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+  -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+  box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+}
+
+.frontside,
+.backside {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: 1s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transition: 1s;
+  -moz-transform-style: preserve-3d;
+  -o-transition: 1s;
+  -o-transform-style: preserve-3d;
+  -ms-transition: 1s;
+  -ms-transform-style: preserve-3d;
+  transition: 1s;
+  transform-style: preserve-3d;
+}
+
+.frontside .card,
+.backside .card {
+  min-height: 312px;
+}
+
+.backside .card a {
+  font-size: 18px;
+  color: #007b5e !important;
+}
+
+.frontside .card .card-title,
+.backside .card .card-title {
+  color: #007b5e !important;
+}
+
+.frontside .card .card-body img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.overflow-x {
+  overflow-x: auto;
+}
+
+.z-0 {
+  z-index: 0;
+}
+
+.contact-us-mail-image {
+  left: 0;
+  bottom: 25%;
+}
+
+.fb-page {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* CONTACT US */
+.contact {
+  padding: 4%;
+  min-height: 50%;
+  max-height: 100%;
+  max-width: 50rem;
+}
+
+.contact-info {
+  margin-bottom: 7%;
+  margin-top: 6%;
+}
+
+.contact-info img {
+  margin-bottom: 5%;
+}
+
+.contact-info h2 {
+  margin-bottom: 6%;
+}
+
+.col-md-9 {
+  background: #fff;
+  padding: 3%;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.contact-form label {
+  font-weight: 600;
+}
+
+.contact-form button {
+  background: #25274d;
+  color: #fff;
+  font-weight: 600;
+  width: 25%;
+}
+
+.contact-form button:focus {
+  box-shadow: none;
+}
+
+/* /END CONTACT US */
+.20w_20h {
+  width: 20vw;
+  height: 20vw;
+  width: 20vw;
+  height: 20vh;
+  min-height: 10rem;
+  min-width: 10rem;
+}
+
+.contact-form-header {
+  background-image: linear-gradient(to top, #86a6bf 0%, #6e97b7 100%);
+}
+
+.size_square_20 {
+  /* min-width: 10rem */
+  /* min-height: 10rem */
+}
+
+.contact-form {
+  padding: 1rem;
+  background: linear-gradient(to top, #6f98b7 0%, #86a6bf 100%);
+}
+
+.cover-screen {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* HOME */
+/* .logo-svg {
+width: 80%;
+height: 80%;
+} */
+#header-graphic-1 {
+  /* background-color: rgba(255, 255, 255, 0.68) */
+  /* border-radius: 1em */
+}
+
+.circle-bg {
+  border-radius: 50%;
+}
+
+.ml14 {
+  font-weight: 200;
+  font-size: 2.6em;
+}
+
+.ml14 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.1em;
+  padding-right: 0.05em;
+  padding-bottom: 0.15em;
+}
+
+.ml14 .line {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #ffffff;
+  transform-origin: 100% 100%;
+  bottom: 0;
+}
+
+.ml14 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+
+/* END HOME PAGE */
+/* ##Device = Desktops
+##Screen = 1281px to higher resolution desktops */
+@media (min-width: 1281px) {
+}
+
+/* ##Device = Laptops, Desktops
+##Screen = B/w 1025px       //to 1280px */
+@media (min-width: 1025px) {
+  /* and (max-width: 1280px) { */
+  .yelp-review {
+    min-width: 300px !important;
+    max-width: 33% !important;
+    margin-top: .1rem !important;
+    margin-bottom: .1rem !important;
+
+    /* padding-right: 1rem !important; */
+    padding-left: 1rem !important;
+    object-fit: scale-down !important;
+  }
+
+  .logo-svg {
+    width: 100% !important;
+  }
+}
+
+/* ##Device = Tablets, Ipads (portrait)
+##Screen = B/w 768px to 1024px */
+@media (max-width: 1024px) {
+  .yelp-review {
+    min-width: 50% !important;
+    max-width: 100% !important;
+    max-height: 12rem;
+    margin-top: .1rem !important;
+    margin-bottom: .1rem !important;
+
+    /* padding-right: 1rem !important; */
+    padding-left: 1rem !important;
+  }
+
+  .logo-svg {
+    width: 100% !important;
+  }
+}
+
+/* ##Device = Tablets, Ipads (landscape)
+##Screen = B/w 768px to 1024px */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
+
+/* ##Device = Low Resolution Tablets, Mobiles (Landscape)
+##Screen = B/w 481px to 767px */
+@media (min-width: 481px) and (max-width: 767px) {
+}
+
+/* ##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px */
+@media (min-width: 320px) and (max-width: 480px) {
+}
+
+#header-graphic-1 {
+  max-width: 20rem;
+}
+
+.hero-text-1 {
+  font-size: .5rem;
+  color: #ffffff;
+}
+
+.nav-item {
+  font-size: .8rem;
+}
+
+.ml7 {
+  position: relative;
+  font-weight: 900;
+  font-size: 1.9em;
+}
+
+.ml7 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.ml7 .letter {
+  transform-origin: 0 100%;
+  display: inline-block;
+  line-height: 1em;
+}
+
+.splash {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-size: cover;
+  background: url(../images/skyhd1.jpg) no-repeat;
+}
+
+.waves {
+  position: fixed;
+  left: 10rem;
+  bottom: 0;
+  right: 0;
+  top: 0;
+}
+
+.bobbing {
+}
+
+.point-animated {
+  display: inline-block;
+}
+
+.splash-loading-text {
+  font-size: 3rem;
+  font-variant: small-caps;
+  bottom: 20%;
+}
+
+.speech-bubble {
+  position: absolute;
+  background: #5dbb6d;
+  right: 3%;
+  bottom: 3%;
+  border-radius: 2rem;
+  width: 13rem;
+  height: 6rem;
+
+  animation: bounce-6 2.5s infinite; //other browsers
+  -webkit-animation: bounce-6 2.5s infinite; //webkit browsers
+  -moz-animation: bounce-6 2.5s infinite; //firefox
+  -o-animation: bounce-6 2.5s infinite; //opera
+}
+@keyframes bounce-6 {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+
+  .speech-bubble:hover {
+  }
+
+  .speech-bubble:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 0.556em solid transparent;
+    border-left-color: #5dbb6d;
+    border-right: 0;
+    margin-top: -0.556em;
+    margin-right: -0.556em;
+  }
+
+  .contact-us-text {
+    margin: auto;
+    font-size: 1rem;
+  }

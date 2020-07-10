@@ -18,36 +18,39 @@
         <!-- DEBUG SCRIPTS -->
         <div id="fb-root"></div>
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0" nonce="pPm5iAUd"></script>
-        <!-- /END DEBUG SCRIPTS -->
+        <!-- ./End DEBUG SCRIPTS -->
         <!-- BG 3D -->
-        <canvas id="bgCanvas" class="static-bg border-dark"></canvas>
-        <!-- /END BG 3D -->
+        <div id="bg" class="position-absolute h-100 w-100" title="SVG BG">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1440 320" class="h-100">
+                <path id="path1" fill="#aad9ff" fill-opacity="1" d="M0,160L80,181.3C160,203,320,245,480,245.3C640,245,800,203,960,160C1120,117,1280,75,1360,53.3L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z" class="waves"></path>
+                <path fill="#5abcd8" fill-opacity=".35" d="M0,256L26.7,234.7C53.3,213,107,171,160,138.7C213.3,107,267,85,320,64C373.3,43,427,21,480,64C533.3,107,587,213,640,218.7C693.3,224,747,128,800,106.7C853.3,85,907,139,960,160C1013.3,181,1067,171,1120,192C1173.3,213,1227,267,1280,288C1333.3,309,1387,299,1413,293.3L1440,288L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z" class="waves">></path>
+                <path id="path2" fill="#74ccf4" fill-opacity=".4" d="M0,32L80,64C160,96,320,160,480,160C640,160,800,96,960,90.7C1120,85,1280,139,1360,165.3L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z" class="waves"></path>
+                <path id="path3" fill="##1fa3ec" fill-opacity=".2" d="M0,160L80,181.3C160,203,320,245,480,245.3C640,245,800,203,960,160C1120,117,1280,75,1360,53.3L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z" class="waves"></path>
+            </svg>
+        </div>
+        <canvas id="bgCanvas" class="static-bg border-dark" title="3D SCENE"></canvas>
+        <!-- ./End BG 3D -->
         <!-- NavBar -->
-        <nav class="row navbar-dark navbar navbar-expand">
-            <a class="navbar-brand" href="#"> <img alt="HOME" src="images/logo_nav.png" class="medium-icon"> </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler23" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarToggler23">
-                <ul class="navbar-nav mt-lg-0 nav-bar-override col d-flex justify-content-end">
-                    <li class="active nav-item">
-                        <a id="nav-button-home" class="nav-link" href="" target="_blank" onclick="return false;">HOME<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="nav-button-about" class="nav-link" href="" target="_blank" onclick="return false;">ABOUT</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="nav-button-listings" class="nav-link" href="" target="_blank" onclick="return false;">LISTINGS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="nav-button-info" class="nav-link" href="" target="_blank" onclick="return false;">INFO</a>
-                    </li>
-                </ul>
-            </div>
+        <nav class="navbar navbar-expand">
+            <a id="nav-button-home-image" href="#"> <img alt="HOME" src="images/logo_nav.png" class="medium-icon"> </a>
+            <ul class="navbar-nav  col d-flex justify-content-end">
+                <li class="nav-item">
+                    <a id="nav-button-home" class="active nav-link" href="" target="_blank" onclick="return false;">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a id="nav-button-about" class="nav-link" href="" target="_blank" onclick="return false;">ABOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a id="nav-button-listings" class="nav-link" href="" target="_blank" onclick="return false;">LISTINGS</a>
+                </li>
+                <li class="nav-item">
+                    <a id="nav-button-info" class="nav-link" href="" target="_blank" onclick="return false;">INFO</a>
+                </li>
+            </ul>
         </nav>
         <!-- End NavBar -->
         <!-- Site Content -->
-        <div id="site-wrapper" class="row align-items-start flex-grow-1 flex-row d-flex overflow-auto">
+        <div id="site-wrapper" class="align-items-start flex-grow-1 flex-row d-flex overflow-auto row" title="MAIN SITE CONTENT">
             <div id="home-page" data-pg-name="HOME PAGE" class="abs-center d-block position-absolute w80_h80">
                 <div id="header-graphic-1" class="test abs-center hide-completely">
                     <!-- <img src="images/logo.svg" class="large-icon image-default"> -->
@@ -293,7 +296,7 @@
                                     <li>
                                         <a target="_blank" href="/uploads/3/4/9/4/34948014/why_to_work_with_realtor.pdf">Why work with a REALTOR</a>&#8203;
                                     </li>
-                                </ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                &#8203;
+                                </ul>
                             </div>
                             <div class="paragraph" style="text-align:center;">Can't find what you are looking for? Ask us! We are always updating this list and happy to provide more materials for buyers per request.&nbsp;</div>
                         </div>
@@ -368,15 +371,19 @@
                     </div>
                 </div>
             </div>
-            <div id="contact-us-button" class="float-bottom-right-corner position-absolute size_square_20" data-pg-name="CONTACT US BUTTON">
-                <img class="medium-icon-portraits align-self-end position-absolute"/>
-                <img src="images/temp_mail.png" class="image-default medium-icon z-0 contact-us-mail-image position-absolute">
+            <div id="contact-us-button" class="size_square_20 speech-bubble d-flex flex-row shadow-lg" data-pg-name="CONTACT US BUTTON">
+                <img class="medium-icon-portraits rounded-circle align-self-start" src="images/margaux_portrait.jpg"/>
+                <h4 class="contact-us-text text-center">Let's chat!</h4>
             </div>
             <!-- End Site Content -->
         </div>
+        <!-- Splash Screen -->
+        <div class="splash" data-pg-name="SPLASH SCREEN">
+            <h2 class="w-100 splash-loading-text position-absolute text-center ">Loading<span class="point-animated">.</span></h2>
+        </div>
+        <!-- ./End Splash Screen -->
         <!-- Bootstrap core JavaScript
-================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
+  ================================================== -->
         <script src="js/jquery.min.js"></script>
         <script src="js/popper.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -385,7 +392,7 @@
         <script src="js/extra/DRACOLoader.js"></script>
         <script type="module" src="js/main.js"></script>
         <script id="__bs_script__">//<![CDATA[
-  document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.26.7'><\/script>".replace("HOST", location.hostname));
-  //]]></script>
+    document.write("<script async src='http://HOST:80/browser-sync/browser-sync-client.js?v=2.26.7'><\/script>".replace("HOST", location.hostname));
+    //]]></script>
     </body>
 </html>
