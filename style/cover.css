@@ -263,13 +263,10 @@ width: 52rem;
 }
 
 .medium-icon-portraits {
-    /* height: 150% */
-    /* right: 10% */
-    /* bottom: 10% */
-    /* margin: 16px */
     width: 40%;
     margin-top: .5rem;
     margin-left: .5rem;
+    margin-right: .1rem;
 }
 
 .sign-bg {
@@ -697,6 +694,10 @@ height: 80%;
     --firefox: bounce-6 2s infinite;
 }
 
+.speech-bubble:hover {
+    transform: scale(1.2);
+}
+
 @keyframes bounce-6 {
     0% {
         transform: translateY(0);
@@ -722,7 +723,7 @@ height: 80%;
     border-left-color: #5dbb6d;
     border-right: 0;
     margin-top: -0.556em;
-    margin-right: -0.556em;
+    margin-right: -0.55em;
 }
 
 .contact-us-text {
@@ -737,6 +738,6 @@ height: 80%;
 
 #bg {
     left: 0;
-    bottom:30%;
+    bottom: 30%;
     background: url(../images/skyhd1.jpg) no-repeat center center;
 }

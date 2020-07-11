@@ -20,7 +20,15 @@
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0" nonce="pPm5iAUd"></script>
         <!-- ./End DEBUG SCRIPTS -->
         <!-- BG 3D -->
-        <canvas id="bgCanvas" class="static-bg border-dark"></canvas>
+        <div id="bg" class="position-absolute h-100 w-100" title="SVG BG">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1440 320" class="h-100">
+                <path id="path1" fill="#aad9ff" fill-opacity="1" d="M0,160L80,181.3C160,203,320,245,480,245.3C640,245,800,203,960,160C1120,117,1280,75,1360,53.3L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z" class="waves"></path>
+                <path fill="#5abcd8" fill-opacity=".35" d="M0,256L26.7,234.7C53.3,213,107,171,160,138.7C213.3,107,267,85,320,64C373.3,43,427,21,480,64C533.3,107,587,213,640,218.7C693.3,224,747,128,800,106.7C853.3,85,907,139,960,160C1013.3,181,1067,171,1120,192C1173.3,213,1227,267,1280,288C1333.3,309,1387,299,1413,293.3L1440,288L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z" class="waves">></path>
+                <path id="path2" fill="#74ccf4" fill-opacity=".4" d="M0,32L80,64C160,96,320,160,480,160C640,160,800,96,960,90.7C1120,85,1280,139,1360,165.3L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z" class="waves"></path>
+                <path id="path3" fill="##1fa3ec" fill-opacity=".2" d="M0,160L80,181.3C160,203,320,245,480,245.3C640,245,800,203,960,160C1120,117,1280,75,1360,53.3L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z" class="waves"></path>
+            </svg>
+        </div>
+        <canvas id="bgCanvas" class="static-bg border-dark" title="3D SCENE"></canvas>
         <!-- ./End BG 3D -->
         <!-- NavBar -->
         <nav class="navbar navbar-expand">
@@ -42,8 +50,8 @@
         </nav>
         <!-- End NavBar -->
         <!-- Site Content -->
-        <div id="site-wrapper" class="row align-items-start flex-grow-1 flex-row d-flex overflow-auto">
-            <div id="home-page" data-pg-name="HOME PAGE" class="abs-center d-block position-absolute w80_h80 shadow-lg">
+        <div id="site-wrapper" class="align-items-start flex-grow-1 flex-row d-flex overflow-auto row" title="MAIN SITE CONTENT">
+            <div id="home-page" data-pg-name="HOME PAGE" class="abs-center d-block position-absolute w80_h80">
                 <div id="header-graphic-1" class="test abs-center hide-completely">
                     <!-- <img src="images/logo.svg" class="large-icon image-default"> -->
                     <svg class="logo-svg" enable-background="new 0 0 1400 980" version="1.1" viewbox="0 0 760 760" xmlns="http://www.w3.org/2000/svg">
@@ -363,21 +371,15 @@
                     </div>
                 </div>
             </div>
-            <div id="contact-us-button" class="size_square_20 speech-bubble d-flex align-items-start align-content-center justify-content-around" data-pg-name="CONTACT US BUTTON">
+            <div id="contact-us-button" class="size_square_20 speech-bubble d-flex flex-row shadow-lg" data-pg-name="CONTACT US BUTTON">
                 <img class="medium-icon-portraits rounded-circle align-self-start" src="images/margaux_portrait.jpg"/>
-                <img src="images/temp_mail.png" class="medium-icon contact-us-mail-image position-absolute">
+                <h4 class="contact-us-text text-center">Let's chat!</h4>
             </div>
             <!-- End Site Content -->
         </div>
         <!-- Splash Screen -->
-        <div class="splash">
+        <div class="splash" data-pg-name="SPLASH SCREEN">
             <h2 class="w-100 splash-loading-text position-absolute text-center ">Loading<span class="point-animated">.</span></h2>
-            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1440 320" class="h-100">
-                <path id="path1" fill="#aad9ff" fill-opacity="1" d="M0,160L80,181.3C160,203,320,245,480,245.3C640,245,800,203,960,160C1120,117,1280,75,1360,53.3L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z" class="waves bobbing"></path>
-                <path fill="#5abcd8" fill-opacity=".35" d="M0,256L26.7,234.7C53.3,213,107,171,160,138.7C213.3,107,267,85,320,64C373.3,43,427,21,480,64C533.3,107,587,213,640,218.7C693.3,224,747,128,800,106.7C853.3,85,907,139,960,160C1013.3,181,1067,171,1120,192C1173.3,213,1227,267,1280,288C1333.3,309,1387,299,1413,293.3L1440,288L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z" class="waves bobbing">></path>
-                <path id="path2" fill="#74ccf4" fill-opacity=".4" d="M0,32L80,64C160,96,320,160,480,160C640,160,800,96,960,90.7C1120,85,1280,139,1360,165.3L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z" class="waves bobbing"></path>
-                <path id="path3" fill="##1fa3ec" fill-opacity=".2" d="M0,160L80,181.3C160,203,320,245,480,245.3C640,245,800,203,960,160C1120,117,1280,75,1360,53.3L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z" class="waves bobbing"></path>
-            </svg>
         </div>
         <!-- ./End Splash Screen -->
         <!-- Bootstrap core JavaScript
