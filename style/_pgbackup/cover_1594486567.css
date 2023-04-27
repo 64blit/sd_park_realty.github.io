@@ -40,9 +40,9 @@ body {
     color: #fff;
     text-align: center;
     text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
-    background: url(../images/skyhd1.jpg) no-repeat center center;
-    background-size: cover;
 
+    /* background: url(../images/skyhd1.jpg) no-repeat center center; */
+    /* background-size: cover; */
     /* font-family: 'ParkRealtyFont', Fallback, sans-serif; */
 }
 
@@ -83,6 +83,8 @@ body {
     margin-left: -40vw;
     margin-top: -40vh;
     min-width: 20rem;
+
+    /* background-color: rgba(0,0,0,.05) */
 }
 
 .w80_h70 {
@@ -196,8 +198,8 @@ width: 52rem;
     height: 100vh;
     top: 0;
     left: 0;
-    background: url(../images/skyhd1.jpg) no-repeat center center;
-    background-size: cover;
+
+    /* background: url(../images/skyhd1.jpg) no-repeat center center */
 }
 
 #center-landing {
@@ -246,10 +248,11 @@ width: 52rem;
 }
 
 .medium-icon {
-    min-height: 2rem;
+    min-height: 4rem;
     max-height: 3rem;
-    min-width: 3rem;
-    max-width: 4rem;
+
+    /* min-width: 4rem */
+    /* max-width: 4rem */
 }
 
 .large-icon {
@@ -260,14 +263,13 @@ width: 52rem;
 }
 
 .medium-icon-portraits {
-    height: 150%;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
-    margin: 16px;
-    min-width: 3rem;
-    min-height: 7rem;
-    object-fit: ;
+    /* height: 150% */
+    /* right: 10% */
+    /* bottom: 10% */
+    /* margin: 16px */
+    width: 40%;
+    margin-top: .5rem;
+    margin-left: .5rem;
 }
 
 .sign-bg {
@@ -429,8 +431,8 @@ section .section-title {
 }
 
 .contact-us-mail-image {
-    left: calc(50% - 1.59em);
-    bottom: 50%;
+    left: 0;
+    bottom: 25%;
 }
 
 .fb-page {
@@ -496,8 +498,8 @@ section .section-title {
 }
 
 .size_square_20 {
-    min-width: 10rem;
-    min-height: 10rem;
+    /* min-width: 10rem */
+    /* min-height: 10rem */
 }
 
 .contact-form {
@@ -567,11 +569,12 @@ height: 80%;
 @media (min-width: 1025px) {
     /* and (max-width: 1280px) { */
     .yelp-review {
-        min-width: 320px !important;
+        min-width: 300px !important;
         max-width: 33% !important;
         margin-top: .1rem !important;
         margin-bottom: .1rem !important;
-        padding-right: 1rem !important;
+
+        /* padding-right: 1rem !important; */
         padding-left: 1rem !important;
         object-fit: scale-down !important;
     }
@@ -590,7 +593,8 @@ height: 80%;
         max-height: 12rem;
         margin-top: .1rem !important;
         margin-bottom: .1rem !important;
-        padding-right: 1rem !important;
+
+        /* padding-right: 1rem !important; */
         padding-left: 1rem !important;
     }
 
@@ -677,4 +681,62 @@ height: 80%;
     font-size: 3rem;
     font-variant: small-caps;
     bottom: 20%;
+}
+
+.speech-bubble {
+    position: absolute;
+    background: #71bf45;
+    right: 3%;
+    bottom: 3%;
+    border-radius: 2rem;
+    width: 13rem;
+    height: 6rem;
+    animation: bounce-6 2s infinite;
+    --other: bounce-6 2s infinite;
+    --webkit: bounce-6 2s infinite;
+    --firefox: bounce-6 2s infinite;
+}
+
+@keyframes bounce-6 {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 0.556em solid transparent;
+    border-left-color: #5dbb6d;
+    border-right: 0;
+    margin-top: -0.556em;
+    margin-right: -0.556em;
+}
+
+.contact-us-text {
+    margin: auto;
+    font-size: 1rem;
+}
+
+.contact-us-text {
+    margin: auto;
+    font-size: 1rem;
+}
+
+#bg {
+    left: 0;
+    bottom:30%;
+    background: url(../images/skyhd1.jpg) no-repeat center center;
 }

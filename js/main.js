@@ -38,15 +38,18 @@ function showSplash(){
   });
 
 }
-
+var isSplashHidden = false;
 function hideSplash(){
 
-  setTimeout(() => {
-    cancelAnimation(pointAnimation);
-    hideElement($('.splash'));
-    onNavButtonHome();
-  }, 500);
+  if(isSplashHidden == false){
+    setTimeout(() => {
+      cancelAnimation(pointAnimation);
+      hideElement($('.splash'));
+      onNavButtonHome();
+    }, 500);
+  }
 
+  isSplashHidden = true;
 }
 
 function findDomElements(){
@@ -183,7 +186,10 @@ function addModel(){
     function ( xhr ) {
       loadingText.text(Math.round( xhr.loaded / xhr.total * 100 ) + '%')
       // console.log(  );
-      hideSplash();
+
+      if(xhr.loaded >= xhr.total ){
+        hideSplash();
+      }
     },
 
     // ERROR CALLBACK
